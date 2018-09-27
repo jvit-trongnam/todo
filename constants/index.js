@@ -1,5 +1,5 @@
 export default {
   ALL: 'All',
-  ACTIVE: 'Active',
+  ACTIVE: 'Incompleted',
   COMPLETED: 'Completed',
 };

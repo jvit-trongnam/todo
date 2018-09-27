@@ -25,10 +25,28 @@ const propTypes = {
 };
 
 class TodoItem extends Component {
+    randomStringTitle = (len) => {
+        let chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        let string_length = len || 8;
+        let randomstring = 'Nam Dinh ';
+        for (var i=0; i<string_length; i++) {
+            let rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum,rnum+1);
+        }
+        return randomstring;
+    };
+    
   onTodoItemToggle = (todo, propAction) => {
     propAction({
       ...todo,
       completed: !todo.completed,
+    });
+  };
+  
+  onTodoItemEdit = (todo, propAction) => {
+    propAction({
+      ...todo,
+      title: this.randomStringTitle(4),
     });
   };
 
@@ -79,6 +97,16 @@ class TodoItem extends Component {
                 {todo.title}
               </Text>
             </Body>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => this.onTodoItemEdit(todo, onUpdate)}
+            style={{ paddingLeft: 25, paddingRight: 15 }}
+          >
+            <Icon
+              name="ios-settings-outline"
+              color={`${todo.title.length > 0 ? 'black' : 'grey'}`}
+              size={23}
+            />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => onDelete(todo)}

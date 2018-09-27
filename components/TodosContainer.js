@@ -88,6 +88,7 @@ export default class TodosContainer extends React.Component {
         <ScrollView>
           <ReactiveList
             componentId="ReactiveList"
+            loader="Loading Results.."
             onAllData={this.onAllData}
             stream
             defaultQuery={() => ({
